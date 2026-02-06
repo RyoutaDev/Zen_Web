@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZEN | Official Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700;900&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --car-blue: #3b82f6;
+            --car-accent: #60a5fa;
+            --carbon: #0f172a;
+        }
+
+        body {
+            background-color: #020617;
+            color: #f8fafc;
+            font-family: 'Exo 2', 'Noto Sans JP', sans-serif;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Carbon fiber pattern background */
+        .bg-carbon {
+            background-color: #020617;
+            background-image: linear-gradient(45deg, #0f172a 25%, transparent 25%), 
+                              linear-gradient(-45deg, #0f172a 25%, transparent 25%), 
+                              linear-gradient(45deg, transparent 75%, #0f172a 75%), 
+                              linear-gradient(-45deg, transparent 75%, #0f172a 75%);
+            background-size: 4px 4px;
+        }
+
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        .neon-border {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+        }
+
+        .gauge-ring {
+            transition: stroke-dashoffset 2s ease-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .engine-light {
+            animation: pulse 2s infinite;
+        }
+
+        .car-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--car-blue), transparent);
+        }
+
+        .nav-item:hover {
+            color: var(--car-blue);
+            text-shadow: 0 0 8px var(--car-blue);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-carbon">
+
+    <!-- HUD Header -->
+    <header class="fixed top-0 w-full z-50 px-4 md:px-6 py-3 flex justify-between items-center glass-panel border-b border-blue-900/30">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 flex items-center justify-center border-2 border-blue-500 rounded-full text-blue-500 font-bold text-sm">Z</div>
+            <span class="text-sm md:text-xl font-black tracking-widest text-glow uppercase">ZEN | HS-Spec</span>
+        </div>
+        <nav class="hidden md:flex gap-8 text-sm font-bold tracking-tighter uppercase">
+            <a href="#profile" class="nav-item">Profile</a>
+            <a href="#specs" class="nav-item">Specs</a>
+            <a href="#mission" class="nav-item">Mission</a>
+        </nav>
+        <div class="text-right">
+            <p class="hidden xs:block text-[8px] text-blue-400 font-mono">STATUS: HIGH SCHOOL STUDENT</p>
+            <p class="text-xs font-mono" id="current-time">00:00:00</p>
+        </div>
+    </header>
+
+    <main class="pt-20 md:pt-28 pb-20 px-4 md:px-10 max-w-7xl mx-auto">
+        
+        <!-- Hero Section -->
+        <section id="profile" class="min-h-[85vh] flex flex-col justify-center mb-16 md:mb-20">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+                
+                <!-- Left: Gauge 1 (Vibe) -->
+                <div class="glass-panel p-6 md:p-8 rounded-2xl flex flex-col items-center justify-center neon-border order-2 lg:order-1">
+                    <h3 class="text-blue-400 text-xs font-bold mb-4 tracking-widest uppercase">Drive Mode</h3>
+                    <div class="relative w-32 h-32 md:w-40 md:h-40">
+                        <svg class="w-full h-full transform -rotate-90">
+                            <circle cx="50%" cy="50%" r="44%" stroke="currentColor" stroke-width="8" fill="transparent" class="text-slate-800" />
+                            <circle cx="50%" cy="50%" r="44%" stroke="currentColor" stroke-width="8" fill="transparent" stroke-dasharray="440" stroke-dashoffset="130" class="text-blue-500 gauge-ring" />
+                        </svg>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <span class="text-xl md:text-2xl font-black">のんびり</span>
+                            <span class="text-[8px] md:text-[10px] text-slate-400 italic">Eco-Cruise</span>
+                        </div>
+                    </div>
+                    <p class="mt-6 text-xs md:text-sm text-slate-400 leading-relaxed text-center">
+                        ハイスクールという過密なスケジュールの中でも、自分らしい低燃費な「のんびり走行」を忘れない設定です。
+                    </p>
+                </div>
+
+                <!-- Center: Main Profile -->
+                <div class="lg:col-span-2 glass-panel p-6 md:p-10 rounded-2xl relative overflow-hidden flex flex-col justify-between border-r-4 border-blue-600 order-1 lg:order-2">
+                    <div class="absolute top-0 right-0 p-4 opacity-10">
+                        <svg width="120" height="120" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-blue-500 font-mono text-[10px] md:text-sm mb-2 tracking-[0.3em] md:tracking-[0.5em]">DRIVER IDENTIFICATION</h2>
+                        <h1 class="text-5xl md:text-7xl font-black italic tracking-tighter mb-4">ぜん <span class="text-xl md:text-2xl not-italic text-blue-400 font-light italic">HS STUDENT</span></h1>
+                        <div class="car-line mb-4 md:mb-6"></div>
+                        <p class="text-base md:text-lg text-slate-300 leading-relaxed max-w-2xl">
+                            現役高校生としての日々を駆け抜けながら、静寂と物語を愛する「のんびり系」ドライバー。
+                            教科書を閉じた後のアニメや読書の時間こそが、私のエンジンの冷却期間です。
+                            周囲のスピードに流されることなく、自分だけのベストラップを探求しています。
+                        </p>
+                    </div>
+                    <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="border-l-2 border-blue-500 pl-3">
+                            <p class="text-[8px] md:text-[10px] text-slate-500 uppercase">Power Unit</p>
+                            <p class="text-xs md:text-sm font-bold">韓国料理</p>
+                        </div>
+                        <div class="border-l-2 border-blue-500 pl-3">
+                            <p class="text-[8px] md:text-[10px] text-slate-500 uppercase">Top Speed</p>
+                            <p class="text-xs md:text-sm font-bold">走ること</p>
+                        </div>
+                        <div class="border-l-2 border-blue-500 pl-3">
+                            <p class="text-[8px] md:text-[10px] text-slate-500 uppercase">Hobbies</p>
+                            <p class="text-xs md:text-sm font-bold">アニメ・読書</p>
+                        </div>
+                        <div class="border-l-2 border-blue-500 pl-3">
+                            <p class="text-[8px] md:text-[10px] text-slate-500 uppercase">Drive</p>
+                            <p class="text-xs md:text-sm font-bold">映画鑑賞</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Specs Section -->
+        <section id="specs" class="mb-16 md:mb-20">
+            <div class="flex items-center gap-4 mb-8 md:mb-10">
+                <h2 class="text-2xl md:text-3xl font-black italic uppercase">Performance Specs</h2>
+                <div class="flex-grow car-line opacity-30"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                
+                <!-- Section 1 -->
+                <div class="glass-panel p-6 md:p-8 rounded-2xl relative">
+                    <div class="absolute top-6 right-6 text-blue-500 opacity-50">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold mb-4 md:mb-6 flex items-center gap-2">
+                        <span class="w-2 h-6 bg-blue-500"></span> 放課後の探求：物語の燃料
+                    </h3>
+                    <div class="space-y-4 md:space-y-6 text-slate-400">
+                        <div>
+                            <h4 class="text-white font-bold mb-2 uppercase text-[10px] tracking-widest italic">Anime & Literature</h4>
+                            <p class="text-xs md:text-sm leading-relaxed">
+                                学業の合間に触れるアニメや読書は、私の想像力のピストンを動かす重要な燃料です。
+                                物語が教えてくれる多様な価値観は、将来のドライビングルートを豊かにしてくれます。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold mb-2 uppercase text-[10px] tracking-widest italic">Movie Theater Experiences</h4>
+                            <p class="text-xs md:text-sm leading-relaxed">
+                                最近ハマっている映画鑑賞は、日常から一時的に「ログアウト」するための大切な儀式。
+                                暗い劇場内で作品と向き合う時間は、最高に贅沢なアイドリングタイムです。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="glass-panel p-6 md:p-8 rounded-2xl relative">
+                    <div class="absolute top-6 right-6 text-blue-500 opacity-50">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold mb-4 md:mb-6 flex items-center gap-2">
+                        <span class="w-2 h-6 bg-blue-500"></span> フィジカル ＆ ブースト
+                    </h3>
+                    <div class="space-y-4 md:space-y-6 text-slate-400">
+                        <div>
+                            <h4 class="text-white font-bold mb-2 uppercase text-[10px] tracking-widest italic">Physical Performance</h4>
+                            <p class="text-xs md:text-sm leading-relaxed">
+                                走ることは、私の基本性能の一部です。テスト期間のストレスも、グラウンドを全力で駆け抜ければ一気にデトックスされます。
+                                この脚力は、どんな険しい道でも自分の力で進み続けるための土台です。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold mb-2 uppercase text-[10px] tracking-widest italic">Main Fuel: Korean Food</h4>
+                            <p class="text-xs md:text-sm leading-relaxed">
+                                私を支える最高の高オクタン燃料は、韓国料理。
+                                あの刺激的な旨辛さは、やる気スイッチをオンにするための最強のブースター。
+                                放課後の楽しみとして、味覚の「テストドライブ」を欠かしません。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Mission -->
+        <section id="mission" class="mb-16 md:mb-20">
+            <div class="glass-panel p-6 md:p-10 rounded-2xl bg-gradient-to-br from-blue-900/20 to-transparent border-t-2 border-blue-500">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div>
+                        <h2 class="text-blue-500 font-mono text-[10px] md:text-sm mb-2 tracking-[0.3em] md:tracking-[0.5em]">ROADMAP</h2>
+                        <h3 class="text-2xl md:text-4xl font-black italic mb-4 md:mb-6">NEXT UPGRADE：自炊スキルの獲得</h3>
+                        <p class="text-xs md:text-sm text-slate-300 leading-relaxed mb-6">
+                            これからは、大好きな韓国料理を自分の手で作り上げる「クッキング・ライセンス」の取得を目指しています。
+                            自分自身で「燃料を生成する能力」を身につけることは、将来、どんな環境でもサバイブできる強固なシャーシを作ることに他なりません。
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <div class="px-3 py-1.5 border border-blue-500 rounded text-blue-500 text-[10px] font-bold engine-light">
+                                SYSTEM UPGRADING...
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 md:gap-4 text-center">
+                        <div class="p-3 md:p-4 border border-slate-800 rounded-xl bg-slate-900/50">
+                            <p class="text-[8px] md:text-[10px] text-blue-400 uppercase mb-1">Study</p>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-blue-500 h-full w-[65%]"></div>
+                            </div>
+                        </div>
+                        <div class="p-3 md:p-4 border border-slate-800 rounded-xl bg-slate-900/50">
+                            <p class="text-[8px] md:text-[10px] text-blue-400 uppercase mb-1">Run</p>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-blue-500 h-full w-[90%]"></div>
+                            </div>
+                        </div>
+                        <div class="p-3 md:p-4 border border-slate-800 rounded-xl bg-slate-900/50">
+                            <p class="text-[8px] md:text-[10px] text-blue-400 uppercase mb-1">Anime</p>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-blue-500 h-full w-[100%]"></div>
+                            </div>
+                        </div>
+                        <div class="p-3 md:p-4 border border-slate-800 rounded-xl bg-slate-900/50">
+                            <p class="text-[8px] md:text-[10px] text-blue-400 uppercase mb-1">Cook</p>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-blue-500 h-full w-[15%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Message -->
+        <section class="text-center py-12 md:py-20 relative overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center opacity-5 select-none pointer-events-none">
+                <span class="text-[25vw] font-black italic">ZEN</span>
+            </div>
+            <div class="relative z-10">
+                <h4 class="text-blue-400 font-mono text-[10px] md:text-xs tracking-widest mb-4 uppercase">Zen's Log Message</h4>
+                <p class="text-3xl md:text-6xl font-black italic text-glow mb-6 md:mb-8 leading-tight">
+                    今週もお疲れ様でした。
+                </p>
+                <div class="car-line w-16 md:w-24 mx-auto mb-6 md:mb-8"></div>
+                <p class="text-xs md:text-sm text-slate-400 max-w-sm md:max-w-xl mx-auto px-4">
+                    高校生という人生の「加速期」にいるからこそ、週末くらいは速度を落として、ゆっくりと景色を楽しみませんか。
+                    安全運転で、また来週。
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="glass-panel border-t border-blue-900/30 py-6 md:py-8 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <p class="text-[8px] md:text-[10px] text-slate-500 font-mono italic">© 2024 ZEN PERFORMANCE | HS EDITION.</p>
+            <div class="flex gap-4">
+                <span class="w-2 h-2 rounded-full bg-blue-500 engine-light"></span>
+                <span class="w-2 h-2 rounded-full bg-blue-800"></span>
+            </div>
+            <p class="text-[8px] md:text-[10px] text-blue-400 font-mono uppercase tracking-tighter">Cruising through my youth at my own pace.</p>
+        </div>
+    </footer>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toTimeString().split(' ')[0];
+            const clockEl = document.getElementById('current-time');
+            if (clockEl) clockEl.textContent = timeString;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
